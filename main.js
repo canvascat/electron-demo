@@ -1,7 +1,13 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, protocol, session } = require('electron')
+const { app, BrowserWindow, protocol, session, dialog } = require('electron');
+const { ipcMain } = require('electron/main');
 const express = require('express')
 const path = require('path')
+
+protocol.registerSchemesAsPrivileged([
+  { scheme: 'github', privileges: { supportFetchAPI: true } },
+  { scheme: 'api', privileges: { supportFetchAPI: true } }
+]);
 
 function createWindow () {
   // Create the browser window.
@@ -27,6 +33,7 @@ function createWindow () {
 app.whenReady().then(() => {
   registerProtocols()
   startServer()
+  registerIpcHandleEvents()
   createWindow()
 
   app.on('activate', function () {
@@ -46,6 +53,13 @@ app.on('window-all-closed', function () {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
+function registerIpcHandleEvents() {
+  ipcMain.handle('dialog:showCertificateTrustDialog', (event, ...args) => dialog.showCertificateTrustDialog(...args));
+  ipcMain.handle('dialog:showErrorBox', (event, ...args) => dialog.showErrorBox(...args));
+  ipcMain.handle('dialog:showMessageBox', (event, ...args) => dialog.showMessageBox(...args));
+  ipcMain.handle('dialog:showOpenDialog', (event, ...args) => dialog.showOpenDialog(...args));
+  ipcMain.handle('dialog:showSaveDialog', (event, ...args) => dialog.showSaveDialog(...args));
+}
 
 function registerProtocols () {
   session.defaultSession.webRequest.onBeforeSendHeaders({ urls: ['http://localhost:5000/api/*'] }, (details, callback) => {

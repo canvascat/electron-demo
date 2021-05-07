@@ -1,9 +1,16 @@
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
-// No Node.js APIs are available in this process because
-// `nodeIntegration` is turned off. Use `preload.js` to
-// selectively enable features needed in the rendering
-// process.
+const { dialog } = require('electron');
+
+document.querySelector('#dialog').addEventListener('click', () => {
+  dialog.showMessageBox({
+    title: 'title',
+    type: 'info',
+    message: 'message',
+    checkboxLabel: 'checkboxLabel',
+    checkboxChecked: true,
+    buttons: ['cancel', 'confirm']
+  })
+    .then(console.log, console.warn)
+})
 
 /**
  *
@@ -21,3 +28,9 @@
 });
 
 Object.defineProperty(window, 'ajax', { value: ajax });
+
+fetch('github://users/canvascat')
+  .then(r => r.text())
+  .then(text => {
+    document.querySelector('#fetch-data').textContent = text;
+  });
