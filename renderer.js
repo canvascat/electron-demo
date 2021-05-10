@@ -75,5 +75,6 @@ document.querySelector('#getDisplayMedia').addEventListener('click', () => {
 
 
 document.querySelector('#createRTCWindow').addEventListener('click', () => {
-  ipcRenderer.send('window:createRTCWindow');
+  // ipcRenderer.send('window:createRTCWindow');
+  ipcRenderer.send('RTC:open');
 });

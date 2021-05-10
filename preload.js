@@ -53,15 +53,15 @@ const _ipcRenderer = {
   eventNames: () => ipcRenderer.eventNames()
 }
 
-const api = { ipcRenderer: _ipcRenderer, shell, clipboard, dialog, systemPreferences, desktopCapturer };
+const _electron = { ipcRenderer: _ipcRenderer, shell, clipboard, dialog, systemPreferences, desktopCapturer };
 
 contextBridge.exposeInMainWorld('electron', electron);
 
 contextBridge.exposeInMainWorld('require', (name) => {
   switch (name) {
     case 'electron':
-      return api;
+      return _electron;
     default:
-      throw new Error(`UNKNOWN_MODULE: ${name}`);
+      throw new Error(`UNREGISTERED_MODULE: ${name}`);
   }
 });

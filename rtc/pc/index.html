@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' api://*; script-src 'self' https://*"/>
+    <meta id="theme-color" name="theme-color" content="#ffffff" />
+    <title>peer connections</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div id="container">
+      <h1>WebRTC peer connections</h1>
+      <div class="video-wrap">
+        <video id="video1" playsinline autoplay muted></video>
+        <video id="video2" playsinline autoplay></video>
+      </div>
+      <p>
+        <button id="startButton">Start</button>
+        <button id="callButton">Call</button>
+        <button id="hangupButton">Hang Up</button>
+      </p>
+    </div>
+
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="main.js" async></script>
+  </body>
+</html>

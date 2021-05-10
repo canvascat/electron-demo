@@ -1,0 +1,82 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  margin: 0;
+  /* padding: 1em; */
+  word-break: break-word;
+}
+
+button {
+  background-color: #d84a38;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8em;
+  margin: 0 0 1em 0;
+  padding: 0.5em 0.7em 0.6em 0.7em;
+}
+div#container {
+  margin: 0 auto 0 auto;
+  max-width: 60em;
+  padding: 1em 1.5em 1.3em 1.5em;
+}
+video {
+  background: #222;
+  margin: 0 0 20px 0;
+  --width: 100%;
+  width: var(--width);
+  height: calc(var(--width) * 0.75);
+}
+
+button:active {
+  background-color: #cf402f;
+}
+
+button:hover {
+  background-color: #cf402f;
+}
+
+button[disabled] {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+button[disabled]:hover {
+  background-color: #d84a38;
+}
+button {
+  margin: 0 20px 0 0;
+  width: 83px;
+}
+
+button#hangupButton {
+  margin: 0;
+}
+
+.video-wrap {
+  margin: 0 0 20px 0;
+  position: relative;
+}
+
+video#video1 {
+  margin: 0 20px 20px 0;
+  --width: 100%;
+  width: var(--width);
+  height: calc(var(--width) * 0.75);
+}
+
+video#video2 {
+  --width: 40%;
+  width: var(--width);
+  height: calc(var(--width) * 0.75);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@media screen and (max-width: 400px) {
+  button {
+    margin: 0 11px 10px 0;
+  }
+}
